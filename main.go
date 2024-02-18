@@ -22,7 +22,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	//r.HandleFunc("/", routes.HomeHandler)
+	r.HandleFunc("/", routes.HomeHandler)
 
 	s := r.PathPrefix("/api").Subrouter()
 
@@ -37,6 +37,7 @@ func main() {
 	s.HandleFunc("/users", routes.CreateUsersHandler).Methods("POST")
 	s.HandleFunc("/users/{id}", routes.DeleteUserHandler).Methods("DELETE")
 
-	http.ListenAndServe(port_env, r)
 	fmt.Println(port_env)
+	http.ListenAndServe(port_env, r)
+
 }
